@@ -71,7 +71,7 @@
             <UploadDownExcel ref="UploadDownExcel" :href="href" :down-load-text="downLoadText"
                 @uploadTableList="uploadTableList" />
             <!-- 新增 -->
-            <Create ref="create" />
+            <Create ref="create" @submit="create" />
             <!-- 编辑 -->
             <Edit ref="edit" />
         </div>

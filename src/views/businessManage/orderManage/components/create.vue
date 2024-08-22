@@ -5,27 +5,27 @@
         <el-row>
           <el-col :span="12">
             <el-form-item label="订单号" prop="customerCode">
-              <el-input v-model="temp.customerCode" />
+              <el-input v-model="temp.customerCode1" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="下单时间" prop="customerName">
-              <el-input v-model="temp.customerName" />
+              <el-input v-model="temp.customerCode2" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="客户信息" prop="customerName">
-              <el-input v-model="temp.customerName" />
+              <el-input v-model="temp.customerCode3" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="收货地址" prop="customerName">
-              <el-input v-model="temp.customerName" />
+              <el-input v-model="temp.customerCode4" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="支付方式" prop="customerName">
-              <el-input v-model="temp.customerName" />
+              <el-input v-model="temp.customerCode5" />
             </el-form-item>
           </el-col>
         </el-row>
@@ -47,13 +47,11 @@ export default {
       title: '新增订单',
       visible: false,
       temp: {
-        customerCode: '',
-        customerName: '',
-        dutyParagraph: '',
-        type1: '',
-        type2: '',
-        type3: '',
-        product: ''
+        customerCode1: '',
+        customerCode2: '',
+        customerCode3: '',
+        customerCode4: '',
+        customerCode5: ''
       },
       rules: {}
     }
@@ -66,7 +64,8 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           this.visible = false
-          this.$parent.getList()
+          this.$emit('submit', this.temp)
+          this.temp = {}
           this.$message({
             type: 'success',
             message: '操作成功'

@@ -4,28 +4,23 @@
       <el-form ref="dataForm" :model="temp" label-position="left" label-width="auto" :rules="rules">
         <el-row>
           <el-col :span="12">
-            <el-form-item label="名称" prop="customerCode">
-              <el-input v-model="temp.customerCode" />
+            <el-form-item label="订单号" prop="customerCode">
+              <el-input v-model="temp.customerCode1" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="地址" prop="customerName">
-              <el-input v-model="temp.customerName" />
+            <el-form-item label="产品" prop="customerName">
+              <el-input v-model="temp.customerCode2" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="电子邮件" prop="customerName">
-              <el-input v-model="temp.customerName" />
+            <el-form-item label="数量" prop="customerName">
+              <el-input v-model="temp.customerCode3" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="电话号码" prop="customerName">
-              <el-input v-model="temp.customerName" />
-            </el-form-item>
-          </el-col>
-          <el-col :span="12">
-            <el-form-item label="供应商银行账户信息" prop="customerName">
-              <el-input v-model="temp.customerName" />
+            <el-form-item label="出货日期" prop="customerName">
+              <el-input v-model="temp.customerCode4" />
             </el-form-item>
           </el-col>
         </el-row>
@@ -47,13 +42,10 @@ export default {
       title: '新增出货',
       visible: false,
       temp: {
-        customerCode: '',
-        customerName: '',
-        dutyParagraph: '',
-        type1: '',
-        type2: '',
-        type3: '',
-        product: ''
+        customerCode1: '',
+        customerCode2: '',
+        customerCode3: '',
+        customerCode4: ''
       },
       rules: {}
     }
@@ -66,7 +58,8 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           this.visible = false
-          this.$parent.getList()
+          this.$emit('submit', this.temp)
+          this.temp = {}
           this.$message({
             type: 'success',
             message: '操作成功'
